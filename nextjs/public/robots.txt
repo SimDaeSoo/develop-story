@@ -1,0 +1,9 @@
+# To prevent search engines from seeing the site altogether, uncomment the next two lines:
+User-Agent: *
+Allow: /articles/*
+Disallow: /settings
+Disallow: /provider/*
+Disallow: /categories/*
+Disallow: /api/*
+Disallow: /graphql/*
+Sitemap: https://www.develop-story.com/sitemap.xml
