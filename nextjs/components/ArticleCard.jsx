@@ -4,7 +4,7 @@ import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import moment from 'moment';
 import { Card, Tag, Tooltip, Button } from 'antd';
-import { ClockCircleOutlined, UserOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined, UserOutlined, TagOutlined } from '@ant-design/icons';
 import UserProfile from '../components/UserProfile';
 import MyProfile from '../components/MyProfile';
 
