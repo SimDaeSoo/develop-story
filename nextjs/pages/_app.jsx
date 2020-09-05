@@ -36,7 +36,7 @@ class _App extends App {
         super(props);
         const { initializeData } = this.props.pageProps;
         this.store = hydrate(initializeData || {});
-        moment.locale('ko');
+        moment.locale('en');
     }
 
     hydrate = () => {
