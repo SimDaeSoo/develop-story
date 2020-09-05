@@ -44,7 +44,7 @@ class SiderLayout extends React.Component {
                         <Tag size='small' style={{ background: 'none', position: 'absolute', right: '4px', top: '8.5px' }}>{user.articleCountDictionary.all}</Tag>
                     </Menu.Item>
                     {
-                        user.categories.map((category) => {
+                        user && user.categories && user.categories.map((category) => {
                             return (
                                 <Menu.Item key={category.id} icon={<FileTextOutlined />} onClick={() => this.linkTo(`/categories/[category]`, `/categories/${category.id}`)} style={{ marginTop: 0, marginBottom: '2px' }}>
                                     {category[`title_${i18n.language}`]}
