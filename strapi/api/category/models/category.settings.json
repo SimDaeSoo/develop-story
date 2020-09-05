@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "name": "Category"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title_en": {
+      "type": "string"
+    },
+    "user": {
+      "via": "categories",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "thumbnail": {
+      "type": "string"
+    },
+    "articles": {
+      "via": "category",
+      "collection": "article"
+    },
+    "title_ko": {
+      "type": "string"
+    }
+  }
+}

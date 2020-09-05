@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comments",
+  "info": {
+    "name": "Comment"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "comments"
+    },
+    "content": {
+      "type": "text"
+    },
+    "article": {
+      "model": "article",
+      "via": "comments"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "comment"
+    },
+    "comment": {
+      "model": "comment",
+      "via": "comments"
+    },
+    "removed": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
