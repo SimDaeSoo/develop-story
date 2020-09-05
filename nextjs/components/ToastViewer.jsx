@@ -52,7 +52,7 @@ class ToastViewer extends React.Component {
     }
 }
 
-const ViewerStyle = { width: '100%', minHeight: '100%', height: 'auto', position: 'relative' };
+const ViewerStyle = { width: '100%', minHeight: '100%', height: 'auto', marginBottom: '40px', position: 'relative' };
 
 const ButtonStyle = {
     position: 'absolute',

@@ -38,7 +38,8 @@ class ArticleCard extends React.Component {
                 {(!auth.hasPermission || article.author.id != auth.user.id) && <UserProfile user={article.author} />}
               </div>
               <div style={UserNameTagStyle}>
-                <Tag color='blue' icon={<UserOutlined />}>{article.author.username} {article.author.email}</Tag>
+                <Tag color='blue' icon={<UserOutlined />} style={{ marginRight: '1px' }}>{article.author.username}</Tag>
+                <Tag color='magenta' icon={<TagOutlined />} style={{ marginRight: '1px' }}>{article.category[`title_${i18n.language}`]}</Tag>
               </div>
             </div>
           }
