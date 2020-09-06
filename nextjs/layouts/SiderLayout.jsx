@@ -55,7 +55,7 @@ class SiderLayout extends React.Component {
                     }
                     {
                         auth.hasPermission && user.id == auth.user.id && user.categories.length &&
-                        <Menu.Item key="/settings" icon={<SettingOutlined />} onClick={() => this.linkTo('/settings', '/settings')} style={{ marginTop: 0, marginBottom: 0 }}>
+                        <Menu.Item key="/settings" icon={<SettingOutlined />} onClick={() => this.linkTo('/settings', '/settings')} style={{ marginTop: 0, marginBottom: '2px' }}>
                             {i18n.t('settings')}
                         </Menu.Item>
                     }

@@ -158,6 +158,15 @@ body,
     padding: 4px;
 }
 
+.ant-menu-item-selected .ant-tag {
+    border-color: #005db0;
+    color: #177ddc;
+}
+
+.ant-layout-sider-children {
+    background-color: rgba(30,30,30,0.2);
+}
+
 @media (max-width: 425px) {
     .article_title {
         font-size: 2em;
