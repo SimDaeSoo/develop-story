@@ -56,6 +56,7 @@ query GetArticle($id: ID!) {
             created_at
             updated_at
             removed
+            edited
             user {
                 id
                 username

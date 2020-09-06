@@ -140,14 +140,14 @@ export async function getInitializeUserData(context) {
     const { owner } = await _gerServerConfig();
 
     const { category, page } = context.query;
-    const article_where = { author: owner.id };
+    const article_where = { author: (owner || {}).id || 0 };
     if (category !== undefined) {
         article_where.category = category;
     }
     const start = page ? (page - 1) * 10 : 0;
     const sort = 'created_at:desc';
     const limit = 10;
-    const { data } = await Network.graphql(InitialUserDataQuery, { user: owner.id, article_where, start, limit, sort });
+    const { data } = await Network.graphql(InitialUserDataQuery, { user: (owner || {}).id || 0, article_where, start, limit, sort });
     const response = await Network.graphql(CategoryQuery);
     const { articlesConnection } = response.data;
     const { groupBy } = articlesConnection;

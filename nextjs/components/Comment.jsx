@@ -120,7 +120,7 @@ class _Comment extends React.Component {
             {
               !comment.removed &&
               <Tooltip title={moment(comment.created_at).format('YYYY-MM-DD HH:mm:ss')}>
-                <span>{moment(comment.created_at).fromNow()} {comment.updated_at !== comment.created_at && `(${i18n.t('edited')})`}</span>
+                <span>{moment(comment.created_at).fromNow()} {comment.edited && `(${i18n.t('edited')})`}</span>
               </Tooltip>
             }
           </>

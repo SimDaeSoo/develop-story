@@ -10,10 +10,10 @@ module.exports = {
     const { id } = ctx.params;
     const { content } = ctx.request.body;
     const user = ctx.state.user;
-
     const comment = await strapi.query('comment').findOne({ id });
+
     if (comment.user.id === user.id) {
-      const _comment = await strapi.query('comment').update({ id }, { content });
+      const _comment = await strapi.query('comment').update({ id }, { content, edited: true });
       ctx.status = 200;
       ctx.send({ comment: _comment });
     } else {

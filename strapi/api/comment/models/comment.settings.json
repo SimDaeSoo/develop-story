@@ -32,6 +32,10 @@
     "removed": {
       "type": "boolean",
       "default": false
+    },
+    "edited": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
