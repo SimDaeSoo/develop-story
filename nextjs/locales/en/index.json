@@ -42,5 +42,6 @@
     "all": "All",
     "removedComment": "this comment is removed.",
     "articles": "Articles",
-    "writeArticle": "Write Article"
+    "writeArticle": "Write Article",
+    "loginForComment": "Login to write comment (click for move login page)"
 }

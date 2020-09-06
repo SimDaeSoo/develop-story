@@ -8,6 +8,7 @@ import Comment from '../components/Comment';
 import ToastViewer from '../components/ToastViewer';
 import moment from 'moment';
 import CreateComment from './CreateComment';
+import EmptyComment from './EmptyComment';
 
 @inject('auth', 'user')
 @observer
@@ -59,6 +60,7 @@ class ArticleViewer extends React.Component {
         <div style={CommentsStyle}>
           {article.comments.filter(comment => !(comment.comment)).map((comment, index) => <Comment language={i18n.language} comment={comment} article={article} key={index} depth={1} comments={article.comments} />)}
           {auth.hasPermission && <CreateComment article={article} />}
+          {!auth.hasPermission && <EmptyComment />}
         </div>
       </div>
     )

@@ -30,10 +30,10 @@ class UserProfile extends React.Component {
     }
 
     render() {
-        const { environment, user, style } = this.props;
+        const { environment, user, style, disabled } = this.props;
 
         return (
-            <Dropdown overlay={this.menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
+            <Dropdown overlay={this.menu} trigger={environment.size === 'small' ? 'click' : 'hover'} disabled={!!disabled}>
                 <a>
                     <Avatar shape="square" src={user.thumbnail} style={{ ...AvatarStyle, ...(style || {}) }} />
                 </a>

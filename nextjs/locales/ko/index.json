@@ -42,5 +42,6 @@
     "all": "모든",
     "removedComment": "삭제된 댓글입니다.",
     "articles": "게시글",
-    "writeArticle": "게시글 작성"
+    "writeArticle": "게시글 작성",
+    "loginForComment": "댓글 작성을 위해 로그인 해주세요 (클릭 시 로그인 페이지로 이동)"
 }
