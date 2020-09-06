@@ -5,6 +5,7 @@ import { Comment, Tooltip, Input, Popconfirm } from 'antd';
 import { EditOutlined, DeleteOutlined, EnterOutlined, SendOutlined, SaveOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import UserProfile from './UserProfile';
+import MyProfile from './MyProfile';
 import CreateComment from './CreateComment';
 import { updateComment, deleteComment } from '../api/comment';
 
