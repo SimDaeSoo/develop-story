@@ -98,9 +98,9 @@ const ThumbnailStyle = {
     position: 'relative',
     width: '232px',
     height: '232px',
-    borderRadius: '4px',
+    borderRadius: '8px',
     overflow: 'hidden',
-    border: '3px solid #252525'
+    border: '3px solid #303030'
 };
 
 const ThumbnailImageStyle = {
