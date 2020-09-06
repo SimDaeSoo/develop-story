@@ -164,7 +164,7 @@ body,
 }
 
 .ant-layout-sider-children {
-    background-color: rgba(30,30,30,0.2);
+    background-color: rgba(30,30,30,0.1);
 }
 
 @media (max-width: 425px) {
