@@ -107,7 +107,10 @@ class _Comment extends React.Component {
       <Comment
         author={<>{comment.user && <a style={FullWidthStyle}>{comment.user.username} {comment.user.email}</a>}</>}
         actions={this.actions}
-        avatar={<>{comment.user && <UserProfile user={comment.user} />}</>}
+        avatar={<>
+          {comment.user.id == auth.user.id && <MyProfile />}
+          {comment.user.id != auth.user.id && <UserProfile user={comment.user} />}
+        </>}
         content={
           <>
             {editable && <Input.TextArea bordered={false} autoSize value={comment.content} style={InputCommentStyle} onChange={this.changeReply} />}

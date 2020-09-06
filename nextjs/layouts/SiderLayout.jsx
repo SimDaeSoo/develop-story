@@ -99,7 +99,8 @@ const ThumbnailStyle = {
     width: '232px',
     height: '232px',
     borderRadius: '4px',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    border: '3px solid #252525'
 };
 
 const ThumbnailImageStyle = {

@@ -109,6 +109,8 @@ body,
 
 .ant-comment-avatar img {
     border-radius: 0;
+    width: 30px;
+    height: 30px;
 }
 
 .hidden {
