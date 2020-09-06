@@ -50,14 +50,12 @@ class _App extends App {
 
     render() {
         const { Component, pageProps } = this.props;
-        const article = ((this.store || {}).user || {}).article;
-        const keywords = [(article.category || {}).title_ko || '', (article.category || {}).title_en || ''];
 
         return (
             <>
                 <I18nextProvider i18n={i18n}>
                     <Provider {...this.store}>
-                        <Head title={article.title || i18n.t('pageTitle')} description={article.description || i18n.t('pageDescription')} keywords={keywords} />
+                        <Head />
                         <DefaultLayout>
                             <Component {...pageProps} hydrate={this.hydrate} />
                         </DefaultLayout >
