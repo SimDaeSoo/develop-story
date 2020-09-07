@@ -91,7 +91,7 @@
 }
 
 .te-md-container .CodeMirror {
-    font-size: 13px;
+    font-size: 15px;
     height: inherit;
 }
 
@@ -702,27 +702,27 @@
 }
 
 .te-heading-add h1 {
-    font-size: 24px;
+    font-size: 28px;
 }
 
 .te-heading-add h2 {
-    font-size: 22px;
+    font-size: 26px;
 }
 
 .te-heading-add h3 {
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .te-heading-add h4 {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .te-heading-add h5 {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .te-heading-add h6 {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .te-dropdown-toolbar {
@@ -1331,7 +1331,7 @@ only screen and (min-resolution: 2dppx) {
 .tui-editor-contents {
     margin: 0;
     padding: 0;
-    font-size: 13px;
+    font-size: 15px;
     font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', '나눔바른고딕', 'Nanum Barun Gothic', '맑은고딕', 'Malgun Gothic', sans-serif;
 }
 
@@ -1374,7 +1374,7 @@ only screen and (min-resolution: 2dppx) {
 }
 
 .tui-editor-contents h1 {
-    font-size: 24px;
+    font-size: 28px;
     line-height: 28px;
     border-bottom: 3px double #999;
     margin: 52px 0 15px 0;
@@ -1382,34 +1382,31 @@ only screen and (min-resolution: 2dppx) {
 }
 
 .tui-editor-contents h2 {
-    font-size: 22px;
-    line-height: 23px;
+    font-size: 26px;
+    line-height: 26px;
     border-bottom: 1px solid #dbdbdb;
     margin: 20px 0 13px 0;
     padding-bottom: 7px;
 }
 
 .tui-editor-contents h3 {
+    font-size: 24px;
+    margin: 12px 0 12px;
+    line-height: 24px;
+}
+
+.tui-editor-contents h4 {
     font-size: 20px;
-    margin: 18px 0 2px;
-}
-
-.tui-editor-contents h4 {
-    font-size: 18px;
-    margin: 10px 0 2px;
-}
-
-.tui-editor-contents h3,
-.tui-editor-contents h4 {
-    line-height: 18px;
+    margin: 10px 0 10px;
+    line-height: 20px;
 }
 
 .tui-editor-contents h5 {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .tui-editor-contents h6 {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .tui-editor-contents h5,
@@ -1723,27 +1720,27 @@ only screen and (min-resolution: 2dppx) {
 }
 
 .tui-md-heading1 {
-    font-size: 24px;
+    font-size: 28px;
 }
 
 .tui-md-heading2 {
-    font-size: 22px;
+    font-size: 26px;
 }
 
 .tui-md-heading3 {
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .tui-md-heading4 {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .tui-md-heading5 {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .tui-md-heading6 {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .tui-md-heading.tui-md-delimiter.setext {

@@ -64,7 +64,7 @@ const WrapperStyle = {
 };
 
 const ContentStyle = {
-    height: 'calc(100% - 36px)',
+    minHeight: 'calc(100% - 36px)',
     marginTop: '36px',
     transition: 'all 0.2s',
 };
