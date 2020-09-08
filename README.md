@@ -23,10 +23,6 @@ Default template of creating basic web service.
 # just typping docker-compose up! then service be running
 $ docker-compose -f docker-compose.yml up --build
 $ docker-compose run strapi bash -c "yarn cli setProvider" # for google provider
-
-# Production Mode
-$ docker-compose -f docker-compose-prod.yml up --build
-$ docker-compose run strapi bash -c "yarn cli setProvider" # for google provider
 ```  
 
 ### Windows
@@ -35,10 +31,6 @@ $ docker-compose run strapi bash -c "yarn cli setProvider" # for google provider
 # please change shell file type 'CRLF' to 'LF'
 # show this - https://blog.thecraftingstrider.net/posts/tech/2019.09/vscode-line-endings-and-bash-script/ 
 $ docker-compose up
-$ docker-compose run strapi bash -c "yarn cli setProvider" # for google provider
-
-# Production Mode
-$ docker-compose -f docker-compose.yml up --build
 $ docker-compose run strapi bash -c "yarn cli setProvider" # for google provider
 ```
 
