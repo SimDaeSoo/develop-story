@@ -45,7 +45,7 @@ export async function getInitializeAuthData(context, options) {
             _setCookieSSR(context, 'jwt', response.jwt);
         } else if (_requestJWT) {
             const headers = { Authorization: `bearer ${_requestJWT}` };
-            const response = await axios.get(`${process.env.SSR_API_URL}/users/me`, { headers });
+            const response = await axios.get(`${process.env.BASE_URL}/users/me`, { headers });
             [jwt, user] = [_requestJWT, response.data];
         } else {
             throw ('permission denied');

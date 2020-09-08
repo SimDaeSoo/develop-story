@@ -10,7 +10,7 @@ class Network {
 
     async graphql(query, variables) {
         const jwt = this.jwt || '';
-        const API_ADDRESS = process.browser ? '/api' : process.env.SSR_API_URL;
+        const API_ADDRESS = process.browser ? '/api' : process.env.BASE_URL;
         const headers = jwt ? { Authorization: `bearer ${jwt}` } : {};
         const { data } = await axios.post(`${API_ADDRESS}/graphql`, { query, variables }, { headers });
         return data;
@@ -18,7 +18,7 @@ class Network {
 
     async get(url, _data) {
         const jwt = this.jwt || '';
-        const API_ADDRESS = process.browser ? '/api' : process.env.SSR_API_URL;
+        const API_ADDRESS = process.browser ? '/api' : process.env.BASE_URL;
         const headers = jwt ? { Authorization: `bearer ${jwt}` } : {};
         const { data } = await axios.get(`${API_ADDRESS}${url}`, { headers, ..._data });
         return data;
@@ -26,7 +26,7 @@ class Network {
 
     async delete(url, _data) {
         const jwt = this.jwt || '';
-        const API_ADDRESS = process.browser ? '/api' : process.env.SSR_API_URL;
+        const API_ADDRESS = process.browser ? '/api' : process.env.BASE_URL;
         const headers = jwt ? { Authorization: `bearer ${jwt}` } : {};
         const { data } = await axios.delete(`${API_ADDRESS}${url}`, { headers, ..._data });
         return data;
@@ -34,7 +34,7 @@ class Network {
 
     async put(url, _data) {
         const jwt = this.jwt || '';
-        const API_ADDRESS = process.browser ? '/api' : process.env.SSR_API_URL;
+        const API_ADDRESS = process.browser ? '/api' : process.env.BASE_URL;
         const headers = jwt ? { Authorization: `bearer ${jwt}` } : {};
         const { data } = await axios.put(`${API_ADDRESS}${url}`, _data, { headers });
         return data;
@@ -42,7 +42,7 @@ class Network {
 
     async post(url, _data) {
         const jwt = this.jwt || '';
-        const API_ADDRESS = process.browser ? '/api' : process.env.SSR_API_URL;
+        const API_ADDRESS = process.browser ? '/api' : process.env.BASE_URL;
         const headers = jwt ? { Authorization: `bearer ${jwt}` } : {};
         const { data } = await axios.post(`${API_ADDRESS}${url}`, _data, { headers });
         return data;
