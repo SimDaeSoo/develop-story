@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 jobs:
   build:
     docker:
@@ -26,17 +26,16 @@ jobs:
             - node_modules
   deploy:
     docker:
-      - image: docker
+      - image: circleci/buildpack-deps:stretch
     steps:
       - checkout
       - run:
           name: Make Docker
           command: |
-            apk update && apk add bash
             chmod +x deployment/deploy.sh
             deployment/deploy.sh
 workflows:
-  version: 2.1
+  version: 2
   build-deploy:
     jobs:
       - build
