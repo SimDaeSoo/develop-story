@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: node:lts
+      - image: circleci/node@3.0.0
     working_directory: ~/develop-story
     steps:
       - checkout
@@ -26,7 +26,7 @@ jobs:
             - node_modules
   deploy:
     docker:
-      - image: docker:v19.03.12
+      - image: circleci/node@3.0.0
     steps:
       - checkout
       - run:
