@@ -26,7 +26,7 @@ jobs:
             - node_modules
   deploy:
     docker:
-      - image: node:lts
+      - image: docker
     steps:
       - checkout
       - run:
