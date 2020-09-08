@@ -48,7 +48,7 @@ services:
       dockerfile: ./compose/nextjs/Dockerfile-dev
     command: sh /start-dev.sh
     environment:
-      - BASE_URL=http://strapi:1337
+      - BASE_API_URL=http://strapi:1337
     volumes:
       - ./nextjs/:/home/service/nextjs/
       - nextjs_node_modules:/home/service/nextjs/node_modules/
