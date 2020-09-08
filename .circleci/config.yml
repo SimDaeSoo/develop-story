@@ -26,11 +26,14 @@ jobs:
             - node_modules
   deploy:
     docker:
-      - image: node:lts
+      - image: circleci/buildpack-deps:stretch
     steps:
       - checkout
       - setup_remote_docker:
-        version: 19.03.12
+          version: 19.03.12
+      - run:
+          name: Install Docker client
+          command: apk add docker-cli
       - run:
           name: Make Docker
           command: |
