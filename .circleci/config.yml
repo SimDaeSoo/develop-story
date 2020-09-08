@@ -3,9 +3,6 @@ jobs:
   build:
     docker:
       - image: node:lts
-        auth:
-          username: $DOCKER_IDENTIFIER
-          password: $DOCKER_PASSWORD
     working_directory: ~/develop-story
     steps:
       - checkout
