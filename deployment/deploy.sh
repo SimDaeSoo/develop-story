@@ -13,6 +13,8 @@ else
     exit 1
 fi
 
+DOCKER_IMAGE_NAME="${DOCKER_IDENTIFIER}/${IMAGE_NAME}"
+
 if [ -n "$CIRCLE_TAG" ]; then
     TAG_NAME="release-${CIRCLE_TAG}"
 else
@@ -22,16 +24,17 @@ fi
 echo "TAG_NAME is : ${TAG_NAME}"
 echo "DOCKER_IMAGE is ${DOCKER_IMAGE_NAME}"
 
-DOCKER_IMAGE_NAME="${DOCKER_IDENTIFIER}/${IMAGE_NAME}"
 docker login -u ${DOCKER_IDENTIFIER} -p ${DOCKER_PASSWORD}
+echo "docker login -u ${DOCKER_IDENTIFIER} -p ${DOCKER_PASSWORD}"
+
 docker build -t ${DOCKER_IMAGE_NAME}:${TAG_NAME} .
+echo "docker build -t ${DOCKER_IMAGE_NAME}:${TAG_NAME} ."
+
 docker tag ${DOCKER_IMAGE_NAME}:${TAG_NAME} ${DOCKER_IMAGE_NAME}:latest
+echo "docker tag ${DOCKER_IMAGE_NAME}:${TAG_NAME} ${DOCKER_IMAGE_NAME}:latest"
+
 docker push ${DOCKER_IMAGE_NAME}:latest
+echo "docker push ${DOCKER_IMAGE_NAME}:latest"
+
 docker push ${DOCKER_IMAGE_NAME}:${TAG_NAME}
-
-#!/bin/bash
-
-if [ -n "$CIRCLE_TAG" ]; then
-    TAG_NAME="release-${CIRCLE_TAG}"
-else
-    TAG_NAME="build-$(git rev-parse --short HEAD)"
+echo "docker push ${DOCKER_IMAGE_NAME}:${TAG_NAME}"
