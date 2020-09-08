@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -6,7 +6,7 @@ jobs:
         auth:
           username: $DOCKER_IDENTIFIER
           password: $DOCKER_PASSWORD
-    working_directory: ~/vims
+    working_directory: ~/develop-story
     steps:
       - checkout
       - restore_cache:
@@ -40,7 +40,7 @@ jobs:
             chmod +x deployment/deploy.sh
             deployment/deploy.sh
 workflows:
-  version: 2
+  version: 2.1
   build-deploy:
     jobs:
       - build
