@@ -26,9 +26,11 @@ jobs:
             - node_modules
   deploy:
     docker:
-      - image: circleci/buildpack-deps:stretch
+      - image: node:lts
     steps:
       - checkout
+      - setup_remote_docker:
+        version: 19.03.12
       - run:
           name: Make Docker
           command: |
