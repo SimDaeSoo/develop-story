@@ -32,6 +32,7 @@ jobs:
       - run:
           name: Make Docker
           command: |
+            apk update && apk add bash
             chmod +x deployment/deploy.sh
             deployment/deploy.sh
 workflows:
