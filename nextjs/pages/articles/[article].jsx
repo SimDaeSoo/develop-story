@@ -21,6 +21,7 @@ class Article extends HydrateComponent {
 }
 
 const ArticleViewerStyle = {
+  height: '100%',
   position: 'relative',
   width: '100%',
   maxWidth: '1024px',
