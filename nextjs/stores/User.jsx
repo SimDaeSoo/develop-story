@@ -20,7 +20,7 @@ class User {
 
         let allCount = 0;
 
-        for (const category of this.user.categories) {
+        for (const category of this.user.categories || []) {
             this.articleCountDictionary[category.id] = 0;
         }
 
