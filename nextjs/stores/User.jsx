@@ -19,6 +19,11 @@ class User {
         this.article = initializeData.article || {};
 
         let allCount = 0;
+
+        for (const category of this.user.categories) {
+            this.articleCountDictionary[category.id] = 0;
+        }
+
         for (const category of (groupBy || {}).category || []) {
             const { key, connection } = category;
             this.articleCountDictionary[key] = connection.aggregate.count || 0;
