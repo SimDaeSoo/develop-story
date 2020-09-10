@@ -42,7 +42,7 @@ class Index extends HydrateComponent {
 
 const MainWrapperStyle = {
   width: '100%',
-  minHeight: 'calc(100vh - 36px)',
+  minHeight: '100%',
   padding: '5px',
   textAlign: 'center',
   display: 'flex',

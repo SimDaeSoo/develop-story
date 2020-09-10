@@ -21,10 +21,11 @@ class Article extends HydrateComponent {
 }
 
 const ArticleViewerStyle = {
-  position: 'relative',
   width: '100%',
   height: 'auto',
+  display: 'flex',
   maxWidth: '1024px',
+  minHeight: '100%',
   margin: 'auto'
 };
 

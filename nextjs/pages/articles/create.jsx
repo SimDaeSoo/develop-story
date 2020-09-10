@@ -22,12 +22,18 @@ class CreateArticle extends HydrateComponent {
 const ArticleEditorStyle = {
     width: '100%',
     height: '100%',
-    margin: 'auto'
+    margin: 'auto',
+    display: 'flex'
 };
 
 export async function getServerSideProps(context) {
     const auth = await getInitializeAuthData(context, { routing: true });
     const user = await getInitializeUserData(context);
+
+    if (((user || {}).user || {}).id != ((auth || {}).user || {}).id || ((auth || {}).user || {}).id === undefined) {
+        context.res.writeHead(303, { Location: '/_404' });
+        context.res.end();
+    }
 
     return { props: { initializeData: { auth, user, environment: { query: context.query } } } };
 }

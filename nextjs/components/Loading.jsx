@@ -39,9 +39,7 @@ const LoadingTextStyle = {
 };
 
 const LoadingStyle = {
-  width: '100%',
-  height: 'calc(100vh - 36px)',
-  display: 'flex'
+  margin: 'auto',
 };
 
 const DisplayNoneStyle = {

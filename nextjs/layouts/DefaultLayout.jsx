@@ -69,9 +69,11 @@ const WrapperStyle = {
 };
 
 const ContentStyle = {
-    minHeight: 'calc(100% - 36px)',
+    height: 'calc(100% - 36px)',
     marginTop: '36px',
-    transition: 'all 0.2s'
+    transition: 'all 0.2s',
+    overflowY: 'auto',
+    overflowX: 'hidden'
 };
 
 const HeaderStyle = {

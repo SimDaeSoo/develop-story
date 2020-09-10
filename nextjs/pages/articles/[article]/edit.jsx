@@ -23,7 +23,8 @@ class EditArticle extends HydrateComponent {
 const ArticleEditorStyle = {
     width: '100%',
     height: '100%',
-    margin: 'auto'
+    margin: 'auto',
+    display: 'flex'
 };
 
 export async function getServerSideProps(context) {
@@ -33,7 +34,7 @@ export async function getServerSideProps(context) {
     const { article } = context.query;
     const _article = await getArticle(article);
 
-    if (!_article) {
+    if (!_article || ((user || {}).user || {}).id != ((auth || {}).user || {}).id || ((auth || {}).user || {}).id === undefined) {
         context.res.writeHead(303, { Location: '/_404' });
         context.res.end();
     }

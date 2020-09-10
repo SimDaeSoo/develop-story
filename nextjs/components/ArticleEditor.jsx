@@ -149,7 +149,7 @@ class ArticleEditor extends React.Component {
 
 const FullSizeStyle = {
   width: '100%',
-  height: 'calc(100vh - 36px)'
+  height: '100%'
 };
 
 const EditorCoverStyle = {
