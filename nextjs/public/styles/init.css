@@ -74,6 +74,10 @@ body,
     margin-left: 12px;
 }
 
+.ant-tag {
+    touch-action: none;
+}
+
 .ant-layout-sider {
     z-index: 6;
     position: absolute;

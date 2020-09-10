@@ -43,7 +43,7 @@ class ArticleCard extends React.Component {
               </div>
             </div>
           }
-          actions={[<Button key='view' style={FullWidthStyle} onClick={this.linkTo}>{i18n.t('view')}</Button>]}
+          actions={[<Button key='view' style={{ ...FullWidthStyle, ...TouchNoneStyle }} onClick={this.linkTo}>{i18n.t('view')}</Button>]}
         >
           <Card.Meta
             title={article.title || '-'}
@@ -53,6 +53,10 @@ class ArticleCard extends React.Component {
       </div>
     )
   }
+}
+
+const TouchNoneStyle = {
+  touchAction: 'none'
 }
 
 const CardWrapperStyle = {
