@@ -22,7 +22,7 @@ class EmptyComment extends React.Component {
     return (
       <div style={FullWidthStyle}>
         <Comment
-          author={<Link href='/connect/google'>{i18n.t('loginForComment')}</Link>}
+          author={<Link href='/connect/google'><a>{i18n.t('loginForComment')}</a></Link>}
           avatar={<UserProfile user={{ username: '-', email: '-', link: '-', message: '-', thumbnail: '/assets/default_user.png' }} disabled={true} />}
           content={
             <div style={AlignRightStyle}>
