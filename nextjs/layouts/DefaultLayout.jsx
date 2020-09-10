@@ -5,7 +5,7 @@ import SiderLayout from './SiderLayout';
 import HeaderLayout from './HeaderLayout';
 
 
-@inject('environment')
+@inject('user', 'environment')
 @observer
 class DefaultLayout extends React.Component {
     constructor(props) {
@@ -27,19 +27,24 @@ class DefaultLayout extends React.Component {
         }
     }
 
+    get disableMenu() {
+        const { user } = this.props;
+        return !user || user.id === undefined;
+    }
+
     render() {
         const { children } = this.props;
-        const { size, collapsed } = this.state;
+        const { size, collapsed, disableMenu } = this.state;
 
         return (
             <Layout style={FULL_HEIGHT}>
-                <SiderLayout onCollapse={this.onCollapse} collapsed={collapsed} />
+                {!this.disableMenu && <SiderLayout onCollapse={this.onCollapse} collapsed={collapsed} />}
                 {
                     (size === 'small' && !collapsed) &&
                     <div style={WrapperStyle} onClick={() => this.onCollapse(!this.collapsed)} />
                 }
                 <Layout style={FULL_HEIGHT}>
-                    <HeaderLayout style={{ ...HeaderStyle, marginLeft: size === 'small' ? 0 : 240, width: size === 'small' ? '100%' : 'calc(100% - 240px)' }} />
+                    {!this.disableMenu && <HeaderLayout style={{ ...HeaderStyle, marginLeft: size === 'small' ? 0 : 240, width: size === 'small' ? '100%' : 'calc(100% - 240px)' }} />}
                     <Layout.Content style={{ ...ContentStyle, marginLeft: size === 'small' ? 0 : 240 }}>
                         {children}
                     </Layout.Content>

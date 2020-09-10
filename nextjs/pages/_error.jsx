@@ -1,4 +1,4 @@
-import { withTranslation } from "react-i18next";
+import React from 'react';
 import Router from 'next/router';
 import HydrateComponent from '../components/HydrateComponent';
 import { Button } from 'antd';
@@ -6,14 +6,12 @@ import { HomeOutlined } from '@ant-design/icons';
 import { getInitializeAuthData } from '../stores/Auth';
 import { getInitializeUserData } from '../stores/User';
 
-class Error extends HydrateComponent {
+class Error extends React.Component {
   home = () => {
     Router.push(`/`, `/`);
   }
 
   render() {
-    const { i18n } = this.props;
-
     return (
       <div style={MainWrapperStyle} className='error-page'>
         <svg className="logo-svg" width="380px" height="500px" viewBox="0 0 837 1045" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlnssketch="http://www.bohemiancoding.com/sketch/ns">
@@ -27,10 +25,10 @@ class Error extends HydrateComponent {
         </svg>
         <div className="message-box">
           <h1>404</h1>
-          <p style={NotFoundStyle}>{i18n.t('pageNotFound')}</p>
+          <p style={NotFoundStyle}>Page not found</p>
           <div className="buttons-con">
             <div className="action-link-wrap">
-              <Button icon={<HomeOutlined />} type='danger' onClick={this.home} style={{ lineHeight: '24px' }}>{i18n.t('goToHomePage')}</Button>
+              <Button icon={<HomeOutlined />} type='danger' onClick={this.home} style={{ lineHeight: '24px' }}>Go to Home Page</Button>
             </div>
           </div>
         </div>
@@ -53,11 +51,4 @@ const NotFoundStyle = {
   fontWeight: 400
 };
 
-export async function getServerSideProps(context) {
-  const auth = await getInitializeAuthData(context, { routing: true });
-  const user = await getInitializeUserData(context);
-
-  return { props: { initializeData: { auth, user, environment: { query: context.query } } } };
-}
-
-export default withTranslation('Error')(Error);
+export default Error;
