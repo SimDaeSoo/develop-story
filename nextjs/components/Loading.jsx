@@ -16,7 +16,7 @@ class Loading extends React.Component {
           <Spin size="large" tip={`${i18n.t('loading')}...`} />
 
           {/* SEO Optimization */}
-          <div style={{ display: 'none' }}>
+          <div style={DisplayNoneStyle}>
             <h1>{article.title}</h1>
             <div className="article-content">{article.content}</div>
             {
@@ -40,8 +40,12 @@ const LoadingTextStyle = {
 
 const LoadingStyle = {
   width: '100%',
-  height: '100%',
+  height: 'calc(100vh - 36px)',
   display: 'flex'
-}
+};
+
+const DisplayNoneStyle = {
+  display: 'none'
+};
 
 export default withTranslation('Loading')(Loading);

@@ -9,12 +9,25 @@ import { getInitializeUserData } from '../stores/User';
 class Settings extends HydrateComponent {
   render() {
     return (
-      <div style={{ width: '100%', minHeight: '100%', maxWidth: '1280px', padding: '5px', margin: 'auto', textAlign: 'center', display: 'flex', position: 'relative', backgroundColor: '#202020' }}>
+      <div style={SettingPageStyle}>
         ToDo.. setting Page....
       </div >
     );
   }
 }
+
+const SettingPageStyle = {
+  width: '100%',
+  minHeight: '100%',
+  maxWidth: '1280px',
+  padding: '5px',
+  margin: 'auto',
+  textAlign: 'center',
+  display: 'flex',
+  position: 'relative',
+  backgroundColor: '#202020'
+};
+
 export async function getServerSideProps(context) {
   const auth = await getInitializeAuthData(context, { routing: true });
   const user = await getInitializeUserData(context);

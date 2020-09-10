@@ -43,5 +43,9 @@
     "removedComment": "this comment is removed.",
     "articles": "Articles",
     "writeArticle": "Write Article",
-    "loginForComment": "Login to write comment (click for move login page)"
+    "loginForComment": "Login to write comment (click for move login page)",
+    "pageNotFound": "Page not found",
+    "goBack": "Go Back",
+    "goToHomePage": "Go to Home Page",
+    "emptyData": "No Data"
 }

@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
     const _article = await getArticle(article);
 
     if (!_article) {
-        context.res.writeHead(303, { Location: '/' });
+        context.res.writeHead(303, { Location: '/_404' });
         context.res.end();
     }
 

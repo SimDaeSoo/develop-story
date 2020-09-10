@@ -21,7 +21,6 @@ class Article extends HydrateComponent {
 }
 
 const ArticleViewerStyle = {
-  height: '100%',
   position: 'relative',
   width: '100%',
   maxWidth: '1024px',
@@ -36,7 +35,7 @@ export async function getServerSideProps(context) {
   const _article = await getArticle(article);
 
   if (!_article) {
-    context.res.writeHead(303, { Location: '/' });
+    context.res.writeHead(303, { Location: '/_404' });
     context.res.end();
   }
 

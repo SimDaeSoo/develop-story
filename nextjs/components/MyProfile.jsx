@@ -59,8 +59,8 @@ class MyProfile extends React.Component {
                 {
                     showName &&
                     <Dropdown overlay={this.menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
-                        <Button icon={<UserOutlined style={{ marginRight: '4px' }} />} style={{ position: 'relative', verticalAlign: 'bottom', paddingLeft: '42px', marginRight: '2px', ...(style || {}) }}>
-                            <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, position: 'absolute', left: '-3px', top: '-1px' }} />
+                        <Button icon={<UserOutlined style={UserIconStyle} />} style={{ ...ButtonStyle, ...(style || {}) }}>
+                            <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, ...ExtendsAvatarStyle }} />
                             {auth.user.username}
                         </Button>
                     </Dropdown>
@@ -78,12 +78,29 @@ const NoMarginStyle = {
     margin: 0
 };
 
+const UserIconStyle = {
+    marginRight: '4px'
+};
+
+const ButtonStyle = {
+    position: 'relative',
+    verticalAlign: 'bottom',
+    paddingLeft: '42px',
+    marginRight: '2px'
+};
+
 const AvatarStyle = {
     verticalAlign: 'bottom',
     margin: '0 2px',
     border: '1px solid rgba(255,255,255,0.3)',
     borderRadius: '4px',
     backgroundColor: 'rgba(0,0,0,0.3)'
+};
+
+const ExtendsAvatarStyle = {
+    position: 'absolute',
+    left: '-3px',
+    top: '-1px'
 };
 
 export default withTranslation('MyProfile')(MyProfile);

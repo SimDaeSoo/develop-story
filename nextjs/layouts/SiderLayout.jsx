@@ -35,27 +35,27 @@ class SiderLayout extends React.Component {
                 collapsedWidth="0"
                 onCollapse={onCollapse}
                 collapsed={collapsed}
-                style={SHADOW_STYLE}
+                style={ShadowStyle}
                 width='240px'
             >
                 <Menu mode="inline" selectedKeys={this.selectedKeys}>
-                    <Menu.Item key="/" icon={<FileTextOutlined />} onClick={() => this.linkTo('/', '/')} style={{ marginTop: 0, marginBottom: '2px' }}>
+                    <Menu.Item key="/" icon={<FileTextOutlined />} onClick={() => this.linkTo('/', '/')} style={MenuItemStyle}>
                         {i18n.t('all')} {i18n.t('category')}
-                        <Tag size='small' style={{ background: 'none', position: 'absolute', right: '4px', top: '8.5px' }}>{user.articleCountDictionary.all}</Tag>
+                        <Tag size='small' style={TagStyle}>{user.articleCountDictionary.all}</Tag>
                     </Menu.Item>
                     {
                         user && user.categories && user.categories.map((category) => {
                             return (
-                                <Menu.Item key={category.id} icon={<FileTextOutlined />} onClick={() => this.linkTo(`/categories/[category]`, `/categories/${category.id}`)} style={{ marginTop: 0, marginBottom: '2px' }}>
+                                <Menu.Item key={category.id} icon={<FileTextOutlined />} onClick={() => this.linkTo(`/categories/[category]`, `/categories/${category.id}`)} style={MenuItemStyle}>
                                     {category[`title_${i18n.language}`]}
-                                    <Tag size='small' style={{ background: 'none', position: 'absolute', right: '4px', top: '8.5px' }}>{user.articleCountDictionary[category.id] || 0}</Tag>
+                                    <Tag size='small' style={TagStyle}>{user.articleCountDictionary[category.id] || 0}</Tag>
                                 </Menu.Item>
                             )
                         })
                     }
                     {
                         auth.hasPermission && user.id == auth.user.id && user.categories.length &&
-                        <Menu.Item key="/settings" icon={<SettingOutlined />} onClick={() => this.linkTo('/settings', '/settings')} style={{ marginTop: 0, marginBottom: '2px' }}>
+                        <Menu.Item key="/settings" icon={<SettingOutlined />} onClick={() => this.linkTo('/settings', '/settings')} style={MenuItemStyle}>
                             {i18n.t('settings')}
                         </Menu.Item>
                     }
@@ -124,9 +124,21 @@ const InfoRowStyle = {
     backgroundColor: 'inherit'
 };
 
-const SHADOW_STYLE = {
+const ShadowStyle = {
     boxShadow: '0px 6px 6px 0px rgba(0, 0, 0, 0.3)',
     paddingTop: '328px'
+};
+
+const MenuItemStyle = {
+    marginTop: 0,
+    marginBottom: '2px'
+};
+
+const TagStyle = {
+    background: 'none',
+    position: 'absolute',
+    right: '4px',
+    top: '8.5px'
 };
 
 export default withRouter(withTranslation('SiderLayout')(SiderLayout));
