@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Layout, Menu, Tag, Tooltip } from 'antd';
 import { FileTextOutlined, UserOutlined, MailOutlined, MessageFilled, LinkOutlined, SettingOutlined } from '@ant-design/icons';
+import icons from '../utils/icons';
 
 @inject('environment', 'auth', 'user')
 @observer
@@ -46,7 +47,7 @@ class SiderLayout extends React.Component {
                     {
                         user && user.categories && user.categories.map((category) => {
                             return (
-                                <Menu.Item key={category.id} icon={<FileTextOutlined />} onClick={() => this.linkTo(`/categories/[category]`, `/categories/${category.id}`)} style={MenuItemStyle}>
+                                <Menu.Item key={category.id} icon={icons[category.icon] || <FileTextOutlined />} onClick={() => this.linkTo(`/categories/[category]`, `/categories/${category.id}`)} style={MenuItemStyle}>
                                     {category[`title_${i18n.language}`]}
                                     <Tag size='small' style={TagStyle}>{user.articleCountDictionary[category.id] || 0}</Tag>
                                 </Menu.Item>

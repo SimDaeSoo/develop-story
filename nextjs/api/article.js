@@ -40,6 +40,7 @@ query GetArticle($id: ID!) {
             title_en
             title_ko
             thumbnail
+            icon
         }
         thumbnail
         content

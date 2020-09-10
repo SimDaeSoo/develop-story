@@ -65,8 +65,8 @@
       "default": "-"
     },
     "categories": {
-      "collection": "category",
-      "via": "user"
+      "via": "user",
+      "collection": "category"
     },
     "comments": {
       "via": "user",

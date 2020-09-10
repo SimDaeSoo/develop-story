@@ -81,6 +81,7 @@ query InitializeUserData($user: ID!, $article_where: JSON, $start: Int, $limit: 
             title_en
             title_ko
             thumbnail
+            icon
         }
     }
 
