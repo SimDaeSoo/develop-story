@@ -28,7 +28,7 @@ class Error extends React.Component {
           <p style={NotFoundStyle}>Page not found</p>
           <div className="buttons-con">
             <div className="action-link-wrap">
-              <Button icon={<HomeOutlined />} type='danger' onClick={this.home} style={{ lineHeight: '24px' }}>Go to Home Page</Button>
+              <Button icon={<HomeOutlined />} type='danger' onClick={this.home}>Go to Home Page</Button>
             </div>
           </div>
         </div>
@@ -39,7 +39,7 @@ class Error extends React.Component {
 
 const MainWrapperStyle = {
   width: '100%',
-  minHeight: '100%',
+  minHeight: 'calc(100vh - 36px)',
   padding: '5px',
   textAlign: 'center',
   display: 'flex',

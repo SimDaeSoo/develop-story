@@ -34,7 +34,7 @@ class DefaultLayout extends React.Component {
 
     render() {
         const { children } = this.props;
-        const { size, collapsed, disableMenu } = this.state;
+        const { size, collapsed } = this.state;
 
         return (
             <Layout style={FULL_HEIGHT}>
@@ -45,7 +45,7 @@ class DefaultLayout extends React.Component {
                 }
                 <Layout style={FULL_HEIGHT}>
                     {!this.disableMenu && <HeaderLayout style={{ ...HeaderStyle, marginLeft: size === 'small' ? 0 : 240, width: size === 'small' ? '100%' : 'calc(100% - 240px)' }} />}
-                    <Layout.Content style={{ ...ContentStyle, marginLeft: size === 'small' ? 0 : 240 }}>
+                    <Layout.Content style={{ ...ContentStyle, marginLeft: size === 'small' || this.disableMenu ? 0 : 240 }}>
                         {children}
                     </Layout.Content>
                 </Layout>
@@ -71,8 +71,7 @@ const WrapperStyle = {
 const ContentStyle = {
     minHeight: 'calc(100% - 36px)',
     marginTop: '36px',
-    transition: 'all 0.2s',
-    overflow: 'hidden'
+    transition: 'all 0.2s'
 };
 
 const HeaderStyle = {
