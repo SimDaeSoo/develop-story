@@ -78,6 +78,12 @@ body,
     touch-action: none;
 }
 
+.tui-editor-contents .lang-youtube,
+.tui-editor-contents .lang-image {
+    margin: 10px auto;
+    padding: 4px;
+}
+
 .ant-layout-sider {
     z-index: 6;
     position: absolute;

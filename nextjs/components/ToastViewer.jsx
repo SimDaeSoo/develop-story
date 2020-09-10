@@ -8,6 +8,7 @@ import { Viewer } from '@toast-ui/react-editor';
 import hljs from "highlight.js";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import { deleteArticle } from '../api/article';
+import { youtubePlugin, imagePlugin } from '../utils/plugins';
 
 @inject('auth')
 @observer
@@ -30,7 +31,7 @@ class ToastViewer extends React.Component {
             <div style={ViewerStyle} className='tui-viewer'>
                 <Viewer
                     initialValue={article.content}
-                    plugins={[[codeSyntaxHighlight, { hljs }]]}
+                    plugins={[[codeSyntaxHighlight, { hljs }], youtubePlugin, imagePlugin]}
                 />
 
                 {

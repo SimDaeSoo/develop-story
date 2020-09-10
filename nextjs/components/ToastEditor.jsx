@@ -7,6 +7,7 @@ import hljs from "highlight.js";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import { Button } from 'antd';
 import { SaveOutlined } from '@ant-design/icons';
+import { youtubePlugin, imagePlugin } from '../utils/plugins';
 
 @inject('environment')
 @observer
@@ -15,6 +16,8 @@ class ToastEditor extends React.Component {
         super(props);
 
         const { article } = this.props;
+        this.editorRef = React.createRef();
+
         this.state = {
             article: (article || {
                 title: '',
@@ -27,7 +30,6 @@ class ToastEditor extends React.Component {
             }),
             loading: false
         };
-        this.editorRef = React.createRef();
     }
 
     save = async () => {
@@ -55,7 +57,7 @@ class ToastEditor extends React.Component {
                     useCommandShortcut={true}
                     usageStatistics={false}
                     previewHighlight={false}
-                    plugins={[[codeSyntaxHighlight, { hljs }], colorSyntaxPlugin]}
+                    plugins={[[codeSyntaxHighlight, { hljs }], colorSyntaxPlugin, youtubePlugin, imagePlugin]}
                     hooks={{ addImageBlobHook: onUpload }}
                 />
                 <div style={ButtonStyle}>
