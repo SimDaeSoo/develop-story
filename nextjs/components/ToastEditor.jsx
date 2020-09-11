@@ -15,7 +15,7 @@ class ToastEditor extends React.Component {
     constructor(props) {
         super(props);
 
-        const { article } = this.props;
+        const { article } = props;
         this.editorRef = React.createRef();
 
         this.state = {

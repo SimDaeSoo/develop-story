@@ -34,7 +34,7 @@ const TopProgressBar = dynamic(() => import('../components/TopProgressBar'), { s
 class _App extends App {
     constructor(props) {
         super(props);
-        const { initializeData } = this.props.pageProps;
+        const { initializeData } = props.pageProps;
         this.store = hydrate(initializeData || {});
         moment.locale('en');
     }

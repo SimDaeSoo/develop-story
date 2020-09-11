@@ -6,10 +6,6 @@ import { getInitializeAuthData } from '../../stores/Auth';
 @inject('auth')
 @observer
 class Provider extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (<></>);
   }

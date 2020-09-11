@@ -13,10 +13,6 @@ import EmptyComment from './EmptyComment';
 @inject('auth', 'user')
 @observer
 class ArticleViewer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { auth, i18n, user } = this.props;
     const article = user.article;

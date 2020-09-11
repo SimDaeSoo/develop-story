@@ -15,7 +15,7 @@ class _Comment extends React.Component {
   constructor(props) {
     super(props);
 
-    const { comment } = this.props;
+    const { comment } = props;
     this.state = { showCreateReply: false, editable: false, comment: { ...comment } };
   }
 

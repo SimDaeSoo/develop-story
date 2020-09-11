@@ -14,7 +14,7 @@ class ArticleEditor extends React.Component {
   constructor(props) {
     super(props);
 
-    const { user } = this.props;
+    const { user } = props;
     this.state = {
       article: (user.article.id ? user.article : {
         id: undefined,
