@@ -1,44 +1,35 @@
 import Router from 'next/router';
+import { useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Pagination, Button, Empty } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import HydrateComponent from '../components/HydrateComponent';
 import { getInitializeAuthData } from '../stores/Auth';
-import ArticleCard from '../components/ArticleCard';
 import { getInitializeUserData } from '../stores/User';
+import ArticleCard from '../components/ArticleCard';
 
-@inject('environment', 'auth', 'user')
-@observer
-class Index extends HydrateComponent {
-  create = () => {
-    Router.push(`/articles/create`);
-  }
+const Index = inject('environment', 'auth', 'user')(observer((props) => {
+  const { environment, auth, user, i18n, hydrate } = props;
+  const create = () => Router.push(`/articles/create`);
+  const pageChange = (page) => Router.push(`/pages/[page]`, `/pages/${page}`);
+  useEffect(() => hydrate(props), [props]);
 
-  pageChange = (page) => {
-    Router.push(`/pages/[page]`, `/pages/${page}`);
-  }
-
-  render() {
-    const { environment, auth, user, i18n } = this.props;
-
-    return (
-      <div style={MainWrapperStyle}>
-        <div style={ArticleCardWrapperStyle}>
-          {user.articles && user.articles.map(article => <ArticleCard article={article} key={article.id} />)}
-          {!user.articles || !user.articles.length && <Empty description={i18n.t('emptyData')}/>}
-        </div>
-        {
-          auth.hasPermission && user.id == auth.user.id && user.categories.length &&
-          <Button type='primary' icon={<PlusOutlined />} style={WriteArticleStyle} onClick={this.create}>{i18n.t('writeArticle')}</Button>
-        }
-        <div style={{ ...PaginationStyle, width: environment.size === 'small' ? '100%' : 'calc(100% - 240px)', left: environment.size === 'small' ? 0 : 240 }}>
-          <Pagination total={user.totalCount} showSizeChanger={false} hideOnSinglePage={false} current={Number(environment.query.page) || 1} onChange={this.pageChange} />
-        </div>
-      </div >
-    );
-  }
-}
+  return (
+    <div style={MainWrapperStyle}>
+      <div style={ArticleCardWrapperStyle}>
+        {user.articles && user.articles.map(article => <ArticleCard article={article} key={article.id} />)}
+        {!user.articles || !user.articles.length && <Empty description={i18n.t('emptyData')} />}
+      </div>
+      {
+        auth.hasPermission && user.id == auth.user.id && user.categories.length &&
+        <Button type='primary' icon={<PlusOutlined />} style={WriteArticleStyle} onClick={create}>{i18n.t('writeArticle')}</Button>
+      }
+      <div style={{ ...PaginationStyle, width: environment.size === 'small' ? '100%' : 'calc(100% - 240px)', left: environment.size === 'small' ? 0 : 240 }}>
+        <Pagination total={user.totalCount} showSizeChanger={false} hideOnSinglePage={false} current={Number(environment.query.page) || 1} onChange={pageChange} />
+      </div>
+    </div >
+  );
+}));
 
 const MainWrapperStyle = {
   width: '100%',
