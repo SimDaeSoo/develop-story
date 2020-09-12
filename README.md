@@ -1,27 +1,19 @@
-# Template
-- Updated : 2020.07.28  
-Default template of creating basic web service.  
+# Develop Story
+- Updated : 2020.09.12  
 
-## Dependecies Version
-- Docker Compose (v3.8)  
-- Base Node.js Image (LTS v12.x.x)
-- Next.js (v9.5.0)  
-(Update when 0.1.0 version changed)  
-- StrAPI (v3.1.4)  
-(Update when 0.1.0 version changed)  
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/001.png?raw=true)  
+Blog Service for develop history, diary  
+this service used `next.js`, `strapi`, `docker`, `circleci`, `toast-ui-editor2.0`, `aws-ecs`, and more... 
 
-## Service Port Info
-- 80 Port - NginX Server  
-- 1337 Port - StrAPI Server  
-- 3000 Port - Next.js Server  
-- 3306 Port - MySQL Server  
+## Before development mode Run
+please remove `/strapi/config/plugin.js` because developmode does't using `aws-s3`  
 
 ## How To Run
 ### Mac OSX & Linux
 ```shell
 # Develop Mode
 # just typping docker-compose up! then service be running
-$ docker-compose -f docker-compose.yml up --build
+$ docker-compose up --build
 $ docker-compose run strapi bash -c "yarn cli setProvider" # for google provider
 ```  
 
@@ -33,6 +25,25 @@ $ docker-compose run strapi bash -c "yarn cli setProvider" # for google provider
 $ docker-compose up
 $ docker-compose run strapi bash -c "yarn cli setProvider" # for google provider
 ```
+
+## Tools & Environments...
+### Docker
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/002.png?raw=true) 
+
+### Node.js Image v12.x.x LTS
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/003.png?raw=true) 
+
+### Next.js v9.5.2 
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/004.png?raw=true) 
+
+### StrAPI (v3.1.4)
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/005.png?raw=true) 
+
+### AWS (ECS, S3, Route53, ALB, EC2, more...)
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/006.png?raw=true) 
+
+### CircleCI (Build & Deploy)
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/007.png?raw=true) 
 
 ## Development Documents
 - Docker - <https://www.docker.com/>  
