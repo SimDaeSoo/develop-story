@@ -1,7 +1,7 @@
 # Develop Story
 - Updated : 2020.09.12  
 
-![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/001.png?raw=true)  
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/.assets/001.png?raw=true)  
 Blog Service for develop history, diary  
 this service used `next.js`, `strapi`, `docker`, `circleci`, `toast-ui-editor2.0`, `aws-ecs`, and more... 
 
@@ -28,22 +28,22 @@ $ docker-compose run strapi bash -c "yarn cli setProvider" # for google provider
 
 ## Tools & Environments...
 ### Docker
-![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/002.png?raw=true) 
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/.assets/002.png?raw=true) 
 
 ### Node.js Image v12.x.x LTS
-![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/003.png?raw=true) 
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/.assets/003.png?raw=true) 
 
 ### Next.js v9.5.2 
-![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/004.png?raw=true) 
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/.assets/004.png?raw=true) 
 
 ### StrAPI (v3.1.4)
-![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/005.png?raw=true) 
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/.assets/005.png?raw=true) 
 
 ### AWS (ECS, S3, Route53, ALB, EC2, more...)
-![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/006.png?raw=true) 
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/.assets/006.png?raw=true) 
 
 ### CircleCI (Build & Deploy)
-![image](https://github.com/SimDaeSoo/develop-story/blob/master/assets/007.png?raw=true) 
+![image](https://github.com/SimDaeSoo/develop-story/blob/master/.assets/007.png?raw=true) 
 
 ## Development Documents
 - Docker - <https://www.docker.com/>  
