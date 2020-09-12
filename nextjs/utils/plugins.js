@@ -20,7 +20,7 @@ export const youtubePlugin = (editor) => {
 
 function renderYoutube(wrapperId, youtubeID) {
   const el = document.querySelector(`#${wrapperId}`);
-  if (el) {
+  if (el && el.innerHTML) {
     el.innerHTML = `<iframe width="100%" height="100%" style='position: absolute; top: 0; left: 0; border:none;' src="https://www.youtube.com/embed/${youtubeID}"></iframe>`;
   }
 }
@@ -47,7 +47,7 @@ export const imagePlugin = (editor) => {
 
 function renderImage(wrapperId, url) {
   const el = document.querySelector(`#${wrapperId}`);
-  if (el) {
+  if (el && el.innerHTML) {
     el.innerHTML = `<img style='margin:0;' src="${url}"/>`;
   }
 }
