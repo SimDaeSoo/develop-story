@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Editor } from '@toast-ui/react-editor';
@@ -8,6 +8,26 @@ import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import { Button } from 'antd';
 import { SaveOutlined } from '@ant-design/icons';
 import { youtubePlugin, imagePlugin } from '../utils/plugins';
+
+const YoutubeInsertCode = `
+\`\`\`youtube
+{
+    "youtubeID": "",
+    "ratio": {
+        "width": 16,
+        "height": 9
+    }
+}
+\`\`\`
+`;
+
+const ImageInsertCode = `
+\`\`\`image
+{
+    "url": ""
+}
+\`\`\`
+`;
 
 const EditorStyle = {
     width: '100%',
@@ -40,6 +60,37 @@ const ToastEditor = inject('environment')(observer(({ i18n, environment, onUploa
         setLoading(true);
         await onSave(content);
     }
+
+    useEffect(() => {
+        const editor = editorRef.current.getInstance();
+        const toolbar = editor.getUI().getToolbar();
+
+        editor.eventManager.addEventType('youtube_insert');
+        editor.eventManager.listen('youtube_insert', () => editor.insertText(YoutubeInsertCode));
+
+        toolbar.insertItem(21, {
+            type: 'button',
+            options: {
+                className: 'youtube-button',
+                event: 'youtube_insert',
+                tooltip: 'Insert Youtube',
+                style: 'background:#202020; background-image:url("/assets/youtube.png"); background-size: 20px;'
+            }
+        });
+
+        editor.eventManager.addEventType('image_insert');
+        editor.eventManager.listen('image_insert', () => editor.insertText(ImageInsertCode));
+
+        toolbar.insertItem(21, {
+            type: 'button',
+            options: {
+                className: 'image-button',
+                event: 'image_insert',
+                tooltip: 'Insert Image',
+                style: 'background:#202020; background-image:url("/assets/images.png"); background-size: 20px;'
+            }
+        });
+    }, [editorRef]);
 
     return (
         <div style={EditorStyle}>
