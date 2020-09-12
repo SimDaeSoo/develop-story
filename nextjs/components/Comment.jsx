@@ -65,9 +65,9 @@ const _Comment = inject('auth', 'user')(observer(({ auth, user, i18n, comment, d
   }
 
   const isOwner = comment.user && article.author.id == comment.user.id;
-  const actions = comment.removed ? [] : [
-    depth < 3 && auth.hasPermission && !comment.removed ? <span key="comment-nested-reply-to" onClick={toggleCreateReply}>{showCreateReply ? <CloseCircleOutlined /> : <SendOutlined />} {showCreateReply ? i18n.t('replyToCancel') : i18n.t('replyTo')}</span> : null,
-    auth.hasPermission && comment.user && comment.user.id == auth.user.id ? (<Popconfirm
+  const actions = comment.removed || !auth.hasPermission ? [] : [
+    depth < 3 && !comment.removed ? <span key="comment-nested-reply-to" onClick={toggleCreateReply}>{showCreateReply ? <CloseCircleOutlined /> : <SendOutlined />} {showCreateReply ? i18n.t('replyToCancel') : i18n.t('replyTo')}</span> : null,
+    comment.user && comment.user.id == auth.user.id ? (<Popconfirm
       title={i18n.t('areYouSureDeleteThisComment')}
       onConfirm={_deleteComment}
       okText={i18n.t('yes')}
@@ -75,7 +75,7 @@ const _Comment = inject('auth', 'user')(observer(({ auth, user, i18n, comment, d
     >
       <span key="comment-delete"><DeleteOutlined /> {i18n.t('replyDelete')}</span>
     </Popconfirm>) : null,
-    auth.hasPermission && comment.user && comment.user.id == auth.user.id ? <span key="comment-edit" onClick={toggleEditReply}>{editable ? <SaveOutlined /> : <EditOutlined />} {editable ? i18n.t('save') : i18n.t('replyEdit')}</span> : null
+    comment.user && comment.user.id == auth.user.id ? <span key="comment-edit" onClick={toggleEditReply}>{editable ? <SaveOutlined /> : <EditOutlined />} {editable ? i18n.t('save') : i18n.t('replyEdit')}</span> : null
   ];
 
   const changeReply = (e) => {
