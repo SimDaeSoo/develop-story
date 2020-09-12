@@ -104,7 +104,7 @@ const SiderLayout = inject('environment', 'auth', 'user')(observer(({ environmen
                 }
             </Menu>
             <div style={{ ...ProfileStyle, left: collapsed ? -240 : 0 }}>
-                <div style={ThumbnailWrapperStyle}>
+                <div style={ThumbnailWrapperStyle} onClick={() => linkTo('/', '/')}>
                     <div style={ThumbnailStyle}>
                         <img src={user.thumbnail} style={ThumbnailImageStyle} />
                     </div>
@@ -113,7 +113,7 @@ const SiderLayout = inject('environment', 'auth', 'user')(observer(({ environmen
                     <Tag icon={<UserOutlined />} style={InfoRowStyle}>{user.username}</Tag>
                     <Tag icon={<MailOutlined />} style={InfoRowStyle}>{user.email}</Tag>
                     <Tooltip title={user.link}>
-                        <Tag icon={<LinkOutlined />} style={InfoRowStyle}>{user.link}</Tag>
+                        <Tag icon={<LinkOutlined />} style={InfoRowStyle} onClick={() => linkTo(user.link, user.link)}>{user.link}</Tag>
                     </Tooltip>
                     <Tag color='blue' icon={<MessageFilled />} style={InfoRowStyle}>{user.message}</Tag>
                 </div>

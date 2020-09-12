@@ -9,7 +9,7 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from '../locales/i18n';
 import moment from 'moment';
 import 'moment/locale/ko';
-moment.locale('en');
+moment.locale('ko');
 
 /* Styles */
 import 'nprogress/nprogress.css';
