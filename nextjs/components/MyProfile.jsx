@@ -1,74 +1,8 @@
 import React from 'react';
-import Router from 'next/router';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Tag, Avatar, Menu, Dropdown, Button } from 'antd';
-import { ExportOutlined, MailOutlined, UserOutlined, LinkOutlined, MessageFilled, LockOutlined } from '@ant-design/icons';
-
-@inject('auth', 'environment')
-@observer
-class MyProfile extends React.Component {
-    logout = () => {
-        const { auth } = this.props;
-        auth.logout();
-    }
-
-    linkTo = (link) => {
-        Router.push(link);
-    }
-
-    get menu() {
-        const { auth, i18n } = this.props;
-
-        return (
-            <Menu>
-                <Menu.Item disabled={true}>
-                    <Tag icon={<UserOutlined style={NoMarginStyle} />} style={TagStyle}>{auth.user.username}</Tag>
-                    <Tag icon={<LockOutlined style={NoMarginStyle} />} style={TagStyle}>{auth.user.role.name}</Tag>
-                </Menu.Item>
-                <Menu.Item disabled={true}>
-                    <Tag icon={<MailOutlined style={NoMarginStyle} />} style={TagStyle}>{auth.user.email}</Tag>
-                </Menu.Item>
-                {/* <Menu.Item disabled={true}>
-                    <Tag icon={<LinkOutlined style={NoMarginStyle} />} style={TagStyle}>{auth.user.link}</Tag>
-                </Menu.Item>
-                <Menu.Item disabled={true}>
-                    <Tag icon={<MessageFilled style={NoMarginStyle} />} color='blue' style={TagStyle}>{auth.user.message}</Tag>
-                </Menu.Item> */}
-                <Menu.Item onClick={this.logout}>
-                    <ExportOutlined />
-                    {i18n.t('logout')}
-                </Menu.Item>
-            </Menu>
-        )
-    }
-
-    render() {
-        const { auth, environment, style, showName } = this.props;
-
-        return (
-            <>
-                {
-                    !showName &&
-                    <Dropdown overlay={this.menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
-                        <a>
-                            <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, ...(style || {}) }} />
-                        </a>
-                    </Dropdown>
-                }
-                {
-                    showName &&
-                    <Dropdown overlay={this.menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
-                        <Button icon={<UserOutlined style={UserIconStyle} />} style={{ ...ButtonStyle, ...(style || {}) }}>
-                            <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, ...ExtendsAvatarStyle }} />
-                            {auth.user.username}
-                        </Button>
-                    </Dropdown>
-                }
-            </>
-        );
-    }
-}
+import { ExportOutlined, MailOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
 
 const TagStyle = {
     margin: '2px'
@@ -102,5 +36,47 @@ const ExtendsAvatarStyle = {
     left: '-3px',
     top: '-1px'
 };
+
+const MyProfile = inject('environment', 'auth')(observer(({ environment, auth, i18n, style, showName }) => {
+    const logout = () => auth.logout();
+
+    const menu = (
+        <Menu>
+            <Menu.Item disabled={true}>
+                <Tag icon={<UserOutlined style={NoMarginStyle} />} style={TagStyle}>{auth.user.username}</Tag>
+                <Tag icon={<LockOutlined style={NoMarginStyle} />} style={TagStyle}>{auth.user.role.name}</Tag>
+            </Menu.Item>
+            <Menu.Item disabled={true}>
+                <Tag icon={<MailOutlined style={NoMarginStyle} />} style={TagStyle}>{auth.user.email}</Tag>
+            </Menu.Item>
+            <Menu.Item onClick={logout}>
+                <ExportOutlined />
+                {i18n.t('logout')}
+            </Menu.Item>
+        </Menu>
+    );
+
+    return (
+        <>
+            {
+                !showName &&
+                <Dropdown overlay={menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
+                    <a>
+                        <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, ...(style || {}) }} />
+                    </a>
+                </Dropdown>
+            }
+            {
+                showName &&
+                <Dropdown overlay={menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
+                    <Button icon={<UserOutlined style={UserIconStyle} />} style={{ ...ButtonStyle, ...(style || {}) }}>
+                        <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, ...ExtendsAvatarStyle }} />
+                        {auth.user.username}
+                    </Button>
+                </Dropdown>
+            }
+        </>
+    );
+}));
 
 export default withTranslation('MyProfile')(MyProfile);

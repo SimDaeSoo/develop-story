@@ -9,7 +9,8 @@ class Auth {
     @observable jwt = '';
     @observable user = {};
 
-    hydrate(initializeData) {
+    hydrate = (initializeData) => {
+        if (!initializeData) return;
         this.jwt = initializeData.jwt;
         this.user = initializeData.user;
         this.updatedAt = initializeData.updatedAt;

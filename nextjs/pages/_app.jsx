@@ -1,16 +1,15 @@
 import React from 'react';
-import App from 'next/app';
-import 'moment/locale/ko';
 
 /* MobX */
 import { Provider } from 'mobx-react';
-import { hydrate } from '../stores';
+import { useStore } from '../stores';
 
 /* I18N */
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../locales/i18n';
 import moment from 'moment';
-import { withTranslation } from "react-i18next";
+import 'moment/locale/ko';
+moment.locale('en');
 
 /* Styles */
 import 'nprogress/nprogress.css';
@@ -25,46 +24,25 @@ import Head from '../components/Head';
 
 /* N-Progress */
 import dynamic from 'next/dynamic';
-import Network from '../utils/network';
 
 /* Layout */
 import DefaultLayout from '../layouts/DefaultLayout';
 const TopProgressBar = dynamic(() => import('../components/TopProgressBar'), { ssr: false });
 
-class _App extends App {
-    constructor(props) {
-        super(props);
-        const { initializeData } = props.pageProps;
-        this.store = hydrate(initializeData || {});
-        moment.locale('en');
-    }
+const App = ({ Component, pageProps }) => {
+    const store = useStore(pageProps.initializeData);
 
-    hydrate = () => {
-        const { initializeData } = this.props.pageProps;
-
-        if (initializeData.auth.updatedAt !== this.store.auth.updatedAt) {
-            this.store = hydrate(initializeData || {});
-            Network.jwt = this.store.auth.jwt;
-        }
-    }
-
-    render() {
-        const { Component, pageProps } = this.props;
-
-        return (
-            <>
-                <I18nextProvider i18n={i18n}>
-                    <Provider {...this.store}>
-                        <Head />
-                        <DefaultLayout>
-                            <Component {...pageProps} hydrate={this.hydrate} />
-                        </DefaultLayout >
-                    </Provider>
-                </I18nextProvider>
-                <TopProgressBar />
-            </>
-        );
-    }
+    return (
+        <Provider {...store}>
+            <I18nextProvider i18n={i18n}>
+                <Head />
+                <DefaultLayout>
+                    <Component {...pageProps} />
+                </DefaultLayout >
+            </I18nextProvider>
+            <TopProgressBar />
+        </Provider>
+    )
 }
 
-export default withTranslation('_App')(_App);
+export default App;

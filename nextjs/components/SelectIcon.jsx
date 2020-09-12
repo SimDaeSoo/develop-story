@@ -422,26 +422,26 @@ const iconNames = [
   "WhatsAppOutlined",
   "WifiOutlined",
   "WomanOutlined"
-]
+];
 
-class SelectIcons extends React.Component {
-  render() {
-    const { icon } = this.props;
+const FullSizeWidthStyle = {
+  width: '100%'
+};
 
-    return (
-      <div>
-        <Select defaultValue={icon || 'StepBackwardOutlined'} style={{ width: '100%' }}>
-          {iconNames.map((icon) => {
-            return (
-              <Select.Option value={icon} key={icon}>
-                {icons[icon]} {icon}
-              </Select.Option>
-            );
-          })}
-        </Select>
-      </div>
-    );
-  }
-}
+const SelectIcons = ({ icon }) => {
+  return (
+    <div>
+      <Select defaultValue={icon || 'StepBackwardOutlined'} style={FullSizeWidthStyle}>
+        {iconNames.map((icon) => {
+          return (
+            <Select.Option value={icon} key={icon}>
+              {icons[icon]} {icon}
+            </Select.Option>
+          );
+        })}
+      </Select>
+    </div>
+  );
+};
 
 export default SelectIcons;

@@ -10,7 +10,8 @@ class User {
     @observable totalCount = 0;
     @observable articleCountDictionary = {};
 
-    hydrate(initializeData) {
+    hydrate = (initializeData) => {
+        if (!initializeData) return;
         const { groupBy } = initializeData;
         const { values, aggregate } = initializeData.articlesConnection || {};
         this.user = initializeData.user || {};

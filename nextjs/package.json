@@ -8,28 +8,28 @@
     "start": "next start"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.2.1",
+    "@ant-design/icons": "^4.2.2",
     "@toast-ui/editor-plugin-code-syntax-highlight": "^1.0.0",
     "@toast-ui/editor-plugin-color-syntax": "^1.0.1",
     "@toast-ui/react-editor": "^2.4.0",
-    "antd": "^4.6.1",
-    "axios": "^0.19.2",
+    "antd": "^4.6.3",
+    "axios": "^0.20.0",
     "babel-preset-react-app": "^9.1.2",
-    "highlight.js": "^10.1.2",
-    "i18next": "^19.6.2",
-    "mobx": "^5.15.4",
-    "mobx-react": "^6.2.2",
+    "highlight.js": "^10.2.0",
+    "i18next": "^19.7.0",
+    "mobx": "^5.15.6",
+    "mobx-react": "^6.3.0",
     "moment": "^2.27.0",
-    "next": "9.5.0",
+    "next": "9.5.3",
     "nprogress": "^0.2.0",
     "querystring": "^0.2.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-i18next": "^11.7.0"
+    "react-i18next": "^11.7.2"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.10.1",
-    "@babel/plugin-proposal-decorators": "^7.10.1"
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.5"
   },
   "babel": {
     "presets": [

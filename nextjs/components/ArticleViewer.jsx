@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Tag, Tooltip } from 'antd';
@@ -9,59 +9,6 @@ import ToastViewer from '../components/ToastViewer';
 import moment from 'moment';
 import CreateComment from './CreateComment';
 import EmptyComment from './EmptyComment';
-
-@inject('auth', 'user')
-@observer
-class ArticleViewer extends React.Component {
-  render() {
-    const { auth, i18n, user } = this.props;
-    const article = user.article;
-
-    return (
-      <div style={ViewerStyle}>
-        <div style={HeaderWrapperStyle}>
-          <img src={article.thumbnail || article.category.thumbnail || '/assets/default.png'} style={ThumbnailStyle} />
-
-          <div style={TitleWrapperStyle}>
-            <div style={TitleBlockStyle}>
-              <div className='article_title'>{article.title}</div>
-            </div>
-          </div>
-
-          <div style={TagsWrapperStyle}>
-            <Tag color='blue' icon={<UserOutlined />} style={UserTagStyle}>
-              {article.author.username}
-            </Tag>
-            <Tag color='magenta' icon={<TagOutlined />}>
-              {article.category[`title_${i18n.language}`]}
-            </Tag>
-            <div>
-              <Tooltip title={moment(article.created_at).format('YYYY-MM-DD HH:mm:ss')}>
-                <Tag color='volcano' icon={<ClockCircleOutlined />} style={UserTagStyle}>
-                  {i18n.t('created')}: {moment(article.created_at).fromNow()}
-                </Tag>
-              </Tooltip>
-              <Tooltip title={moment(article.updated_at).format('YYYY-MM-DD HH:mm:ss')}>
-                <Tag color='orange' icon={<EditOutlined />}>
-                  {i18n.t('updated')}: {moment(article.updated_at).fromNow()}
-                </Tag>
-              </Tooltip>
-            </div>
-          </div>
-        </div>
-
-        <div className='article_description'><Viewer initialValue={`><span style="color:#cccccc; font-size:1.1em">${article.description}</span>`} /></div>
-        <ToastViewer article={article} />
-
-        <div style={CommentsStyle}>
-          {article.comments.filter(comment => !(comment.comment)).map((comment, index) => <Comment language={i18n.language} comment={comment} article={article} key={index} depth={1} comments={article.comments} />)}
-          {auth.hasPermission && <CreateComment article={article} />}
-          {!auth.hasPermission && <EmptyComment />}
-        </div>
-      </div>
-    )
-  }
-}
 
 const CommentsStyle = {
   backgroundColor: '#202020',
@@ -109,5 +56,60 @@ const ThumbnailStyle = {
   height: '300px',
   objectFit: 'cover'
 };
+
+const ArticleViewer = inject('environment', 'auth', 'user')(observer(({ auth, i18n, user }) => {
+  const viewerRef = useRef();
+  const article = user.article;
+  useEffect(() => viewerRef.current && viewerRef.current.getInstance().setMarkdown(`><span style="color:#cccccc; font-size:1.1em">${article.description}</span>`), [article.description]);
+
+  return (
+    <div style={ViewerStyle}>
+      {
+        article.id !== undefined &&
+        <>
+          <div style={HeaderWrapperStyle}>
+            <img src={article.thumbnail || article.category.thumbnail || '/assets/default.png'} style={ThumbnailStyle} />
+
+            <div style={TitleWrapperStyle}>
+              <div style={TitleBlockStyle}>
+                <div className='article_title'>{article.title}</div>
+              </div>
+            </div>
+
+            <div style={TagsWrapperStyle}>
+              <Tag color='blue' icon={<UserOutlined />} style={UserTagStyle}>
+                {article.author.username}
+              </Tag>
+              <Tag color='magenta' icon={<TagOutlined />}>
+                {article.category[`title_${i18n.language}`]}
+              </Tag>
+              <div>
+                <Tooltip title={moment(article.created_at).format('YYYY-MM-DD HH:mm:ss')}>
+                  <Tag color='volcano' icon={<ClockCircleOutlined />} style={UserTagStyle}>
+                    {i18n.t('created')}: {moment(article.created_at).fromNow()}
+                  </Tag>
+                </Tooltip>
+                <Tooltip title={moment(article.updated_at).format('YYYY-MM-DD HH:mm:ss')}>
+                  <Tag color='orange' icon={<EditOutlined />}>
+                    {i18n.t('updated')}: {moment(article.updated_at).fromNow()}
+                  </Tag>
+                </Tooltip>
+              </div>
+            </div>
+          </div>
+
+          <div className='article_description'><Viewer ref={viewerRef} initialValue={`><span style="color:#cccccc; font-size:1.1em">${article.description}</span>`} /></div>
+          <ToastViewer article={article} />
+
+          <div style={CommentsStyle}>
+            {article.comments.filter(comment => !(comment.comment)).map((comment, index) => <Comment language={i18n.language} comment={comment} article={article} key={index} depth={1} comments={article.comments} />)}
+            {auth.hasPermission && <CreateComment article={article} />}
+            {!auth.hasPermission && <EmptyComment />}
+          </div>
+        </>
+      }
+    </div>
+  );
+}));
 
 export default withTranslation('ArticleViewer')(ArticleViewer);

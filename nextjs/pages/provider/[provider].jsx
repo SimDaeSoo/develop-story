@@ -1,15 +1,10 @@
 import React from 'react';
-import { observer, inject } from 'mobx-react';
 import { withTranslation } from 'react-i18next';
 import { getInitializeAuthData } from '../../stores/Auth';
 
-@inject('auth')
-@observer
-class Provider extends React.Component {
-  render() {
-    return (<></>);
-  }
-}
+const Provider = () => {
+  return (<></>);
+};
 
 export async function getServerSideProps(context) {
   const auth = await getInitializeAuthData(context);

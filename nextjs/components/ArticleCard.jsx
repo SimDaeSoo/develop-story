@@ -8,53 +8,6 @@ import { ClockCircleOutlined, UserOutlined, TagOutlined } from '@ant-design/icon
 import UserProfile from '../components/UserProfile';
 import MyProfile from '../components/MyProfile';
 
-@inject('auth')
-@observer
-class ArticleCard extends React.Component {
-  linkTo = () => {
-    const { article, router } = this.props;
-    router.push('/articles/[article]', `/articles/${article.id}`);
-  }
-
-  render() {
-    const { auth, i18n, article } = this.props;
-
-    return (
-      <div style={CardWrapperStyle}>
-        <Card
-          style={ArticleCardStyle}
-          cover={
-            <div style={CoverWrapperStyle}>
-              <img src={article.thumbnail || article.category.thumbnail || '/assets/default.png'} style={CoverThumbnailStyle} />
-              <div style={CardDateTagStyle}>
-                <Tooltip title={moment(article.created_at).format('YYYY-MM-DD HH:mm:ss')}>
-                  <Tag color='orange' icon={<ClockCircleOutlined />} style={SmallMarginStyle}>
-                    {moment(article.created_at).fromNow()}
-                  </Tag>
-                </Tooltip>
-              </div>
-              <div style={AvatarStyle}>
-                {auth.hasPermission && article.author.id == auth.user.id && <MyProfile />}
-                {(!auth.hasPermission || article.author.id != auth.user.id) && <UserProfile user={article.author} />}
-              </div>
-              <div style={UserNameTagStyle}>
-                <Tag color='blue' icon={<UserOutlined />} style={SmallMarginStyle}>{article.author.username}</Tag>
-                <Tag color='magenta' icon={<TagOutlined />} style={SmallMarginStyle}>{article.category[`title_${i18n.language}`]}</Tag>
-              </div>
-            </div>
-          }
-          actions={[<Button key='view' style={{ ...FullWidthStyle, ...TouchNoneStyle }} onClick={this.linkTo}>{i18n.t('view')}</Button>]}
-        >
-          <Card.Meta
-            title={article.title || '-'}
-            description={<div className='card-description'>{article.description}</div>}
-          />
-        </Card>
-      </div>
-    )
-  }
-}
-
 const TouchNoneStyle = {
   touchAction: 'none'
 }
@@ -112,5 +65,43 @@ const UserNameTagStyle = {
 const FullWidthStyle = {
   width: '100%'
 };
+
+const ArticleCard = inject('auth')(observer(({ auth, i18n, article, router }) => {
+  const linkTo = () => router.push('/articles/[article]', `/articles/${article.id}`);
+
+  return (
+    <div style={CardWrapperStyle}>
+      <Card
+        style={ArticleCardStyle}
+        cover={
+          <div style={CoverWrapperStyle}>
+            <img src={article.thumbnail || article.category.thumbnail || '/assets/default.png'} style={CoverThumbnailStyle} />
+            <div style={CardDateTagStyle}>
+              <Tooltip title={moment(article.created_at).format('YYYY-MM-DD HH:mm:ss')}>
+                <Tag color='orange' icon={<ClockCircleOutlined />} style={SmallMarginStyle}>
+                  {moment(article.created_at).fromNow()}
+                </Tag>
+              </Tooltip>
+            </div>
+            <div style={AvatarStyle}>
+              {auth.hasPermission && article.author.id == auth.user.id && <MyProfile />}
+              {(!auth.hasPermission || article.author.id != auth.user.id) && <UserProfile user={article.author} />}
+            </div>
+            <div style={UserNameTagStyle}>
+              <Tag color='blue' icon={<UserOutlined />} style={SmallMarginStyle}>{article.author.username}</Tag>
+              <Tag color='magenta' icon={<TagOutlined />} style={SmallMarginStyle}>{article.category[`title_${i18n.language}`]}</Tag>
+            </div>
+          </div>
+        }
+        actions={[<Button key='view' style={{ ...FullWidthStyle, ...TouchNoneStyle }} onClick={linkTo}>{i18n.t('view')}</Button>]}
+      >
+        <Card.Meta
+          title={article.title || '-'}
+          description={<div className='card-description'>{article.description}</div>}
+        />
+      </Card>
+    </div>
+  );
+}));
 
 export default withRouter(withTranslation('ArticleCard')(ArticleCard));

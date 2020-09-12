@@ -6,7 +6,8 @@ class Environment {
     @observable query = {};
     @observable size = 'default';
 
-    hydrate(initializeData) {
+    hydrate = (initializeData) => {
+        if (!initializeData) return;
         this.query = initializeData.query || {};
     }
 
