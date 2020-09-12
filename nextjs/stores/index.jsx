@@ -19,9 +19,10 @@ class Store {
     }
 
     hydrate = (initialData) => {
-        this.environment.hydrate(initialData.environment);
-        this.auth.hydrate(initialData.auth);
-        this.user.hydrate(initialData.user);
+        if (!initialData) return;
+        if (initialData.environment) this.environment.hydrate(initialData.environment);
+        if (initialData.auth) this.auth.hydrate(initialData.auth);
+        if (initialData.user) this.user.hydrate(initialData.user);
     }
 }
 
