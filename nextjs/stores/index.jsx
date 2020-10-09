@@ -4,7 +4,6 @@ import Environment from './Environment';
 import Auth from './Auth';
 import User from './User';
 import Network from '../utils/network';
-import { hydrate } from 'react-dom';
 
 useStaticRendering(!process.browser);
 
